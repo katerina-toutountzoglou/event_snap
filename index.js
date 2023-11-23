@@ -18,7 +18,7 @@ app.use('/api/events',eventsRoute)
 app.use('/api/users',usersRoute)
 
 
-app.get('/',(req,res)=>res.send('Hello from homepage!!'));
+app.get('/',(req,res)=>res.send('Hello from homepage!!!!'));
 
 const PORT=5000;
 app.listen(PORT,()=>console.log(`Server Running on port: http://localhost:${PORT}`));

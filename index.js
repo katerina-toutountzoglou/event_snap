@@ -21,4 +21,5 @@ app.use('/api/users',usersRoute)
 app.get('/',(req,res)=>res.send('Hello from homepage!!!!'));
 
 const PORT=5000;
+//const PORT="https://snap-event.cyclic.app";
 app.listen(PORT,()=>console.log(`Server Running on port: http://localhost:${PORT}`));

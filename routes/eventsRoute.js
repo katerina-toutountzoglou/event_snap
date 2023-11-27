@@ -3,7 +3,7 @@ import express from 'express';
 const router= express.Router();
 import Event from '../models/event.js';
 
-
+/* //to get pou douleuei
 router.get('/getallevents',async (req,res)=>{
     try{
         const events=await Event.find({});
@@ -11,6 +11,32 @@ router.get('/getallevents',async (req,res)=>{
 
     }catch(error){
         return res.status(400).json({message: error});
+
+    }
+});
+*/
+
+
+router.get('/getallevents',async (req,res)=>{
+    try{
+        let query={};
+        
+        
+        // Check if category parameter is provided
+        if (req.query.event_type) {
+           query.event_type = req.query.event_type;
+        }
+        
+        // Check if city parameter is provided
+        if (req.query.location) {
+           query.location = req.query.location;
+        }
+        
+        const events = await Event.find(query);
+        res.json(events);
+        
+    }catch(error){
+        return res.status(500).json({message: error});
 
     }
 });

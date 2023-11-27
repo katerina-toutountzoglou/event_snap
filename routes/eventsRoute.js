@@ -49,7 +49,7 @@ router.get('/geteventbylocation/:eventlocation',async (req,res)=>{
         const {eventlocation}=req.params;
     
         const event=await Event.find({location: eventlocation});
-       res.send({event});
+       res.send(event);
        
     }catch(error){
         return res.status(400).json({message: error});

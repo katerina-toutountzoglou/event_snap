@@ -44,7 +44,7 @@ router.post('/geteventbylocation',async (req,res)=>{
     }
 });
 */
-router.post('/geteventbylocation/:eventlocation',async (req,res)=>{
+router.get('/geteventbylocation/:eventlocation',async (req,res)=>{
     try{
         const {eventlocation}=req.params;
     

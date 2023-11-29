@@ -22,7 +22,23 @@ const eventSchema=mongoose.Schema(
             type: String,
             required:true
         },
-        image_urls:[],
+        image1:{
+            type:String,
+            required:false
+
+        },
+        image2:{
+            type:String,
+            required:false
+        },
+        image3:{
+            type:String,
+            required:false
+        },
+        image4:{
+            type:String,
+            required:false
+        },
         description:{
             type: String,
             required: true,

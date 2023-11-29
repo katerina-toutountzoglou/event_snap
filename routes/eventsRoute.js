@@ -84,7 +84,7 @@ router.put('/bookevent',async (req,res)=>{
          
       
       const event=await Event.find({event_title: req.body.event_title});
-      console.log(event);
+      console.log(event.location);
        if(!event){
         console.log("event not found!");
         return res.status(400).json({message: error});

@@ -71,6 +71,46 @@ router.get('/geteventbylocation/:eventlocation',async (req,res)=>{
     }
 });
 */
+
+
+router.put('/bookevent',async (req,res)=>{
+   
+    try{
+         const {event_title,numoftickets1}=req.body;
+
+         const numoftickets=parseInt(req.body.numoftickets1,10);
+
+         console.log(numoftickets);
+         
+      
+      const event=await Event.find({event_title: req.body.event_title});
+      console.log(event);
+       if(!event){
+        console.log("event not found!");
+        return res.status(400).json({message: error});
+       }
+       if(event.remaining_tickets<numoftickets){
+        return res.status(400).json({message:'Sorry! Not enough tickets!'});
+       }
+       if(event.remaining_tickets===0){
+        return res.status(400).json({message: 'Sold out!'});
+       }
+       const temp= event.remaining_tickets-numoftickets;
+       event.remaining_tickets=temp;
+
+       const event2=await Event.findOneAndUpdate({_id: eventid},{remaining_tickets:temp},{new:true});
+
+       res.send({message: 'You have made a successful booking!'});
+       
+    }catch(error){
+        return res.status(400).json({message: error});
+
+    }
+});
+
+
+
+
 /*
 
 

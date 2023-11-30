@@ -72,7 +72,7 @@ router.get('/geteventbylocation/:eventlocation',async (req,res)=>{
 });
 */
 
-
+/*
 router.put('/bookevent',async (req,res)=>{
    
     try{
@@ -96,9 +96,8 @@ router.put('/bookevent',async (req,res)=>{
         return res.status(400).json({message: 'Sold out!'});
        }
        const temp= event.remaining_tickets-numoftickets;
-       event.remaining_tickets=temp;
-
-       const event2=await Event.findOneAndUpdate({_id: eventid},{remaining_tickets:temp},{new:true});
+       
+      // const event2=await Event.findOneAndUpdate({_id: eventid},{remaining_tickets:temp},{new:true});
 
        res.send({message: 'You have made a successful booking!'});
        
@@ -108,7 +107,7 @@ router.put('/bookevent',async (req,res)=>{
     }
 });
 
-
+*/
 
 
 /*

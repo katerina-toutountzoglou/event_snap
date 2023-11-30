@@ -49,7 +49,7 @@ const eventSchema=mongoose.Schema(
             required: true
         },
         event_date:{
-            type: Date,
+            type: String,
             required:true
         }
 

@@ -1,9 +1,11 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-
+//n
+//import cors from 'cors';//Allow request from any ip
 
 const app= express();
-
+//n
+//app.use(cors());
 
 app.use(bodyParser.json());
 app.use(express.json())    //ypoxrewtiko epeidh pairnoume parametrous

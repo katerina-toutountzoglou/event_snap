@@ -1,22 +1,13 @@
 import express from 'express';
 import mongoose from 'mongoose';
 
+import cors from 'cors';
+
 
 const router= express.Router();
 import Event from '../models/event.js';
 
-/* //to get pou douleuei
-router.get('/getallevents',async (req,res)=>{
-    try{
-        const events=await Event.find({});
-       res.send(events);
 
-    }catch(error){
-        return res.status(400).json({message: error});
-
-    }
-});
-*/
 
 
 router.get('/getallevents',async (req,res)=>{
@@ -43,97 +34,30 @@ router.get('/getallevents',async (req,res)=>{
     }
 });
 
-router.post('/geteventbyid',async (req,res)=>{
-    
-    const eventid=req.body.eventid
-    try{
-        const event=await Event.findOne({_id: eventid});
-       res.send(event);
-       console.log(event);
 
-    }catch(error){
-        return res.status(400).json({message: error});
 
-    }
-});
-
-/*
-router.get('/geteventbylocation/:eventlocation',async (req,res)=>{
-    try{
-        const {eventlocation}=req.params;
-    
-        const event=await Event.find({location: eventlocation});
-       res.send(event);
-       
-    }catch(error){
-        return res.status(400).json({message: error});
-
-    }
-});
-*/
-
-/*
 router.put('/bookevent',async (req,res)=>{
    
     try{
-         const {event_title,numoftickets1}=req.body;
-
-         const numoftickets=parseInt(req.body.numoftickets1,10);
-
-         console.log(numoftickets);
-         
+       const {event_id,tickets}=req.body;
+       const numoftickets=parseInt(req.body.tickets,10);
+     
+       const event=await Event.findOne({_id: req.body.event_id});
       
-      const event=await Event.find({event_title: req.body.event_title});
-      console.log(event.location);
        if(!event){
         console.log("event not found!");
         return res.status(400).json({message: error});
        }
-       if(event.remaining_tickets<numoftickets){
-        return res.status(400).json({message:'Sorry! Not enough tickets!'});
-       }
        if(event.remaining_tickets===0){
         return res.status(400).json({message: 'Sold out!'});
        }
-       const temp= event.remaining_tickets-numoftickets;
-       
-      // const event2=await Event.findOneAndUpdate({_id: eventid},{remaining_tickets:temp},{new:true});
-
-       res.send({message: 'You have made a successful booking!'});
-       
-    }catch(error){
-        return res.status(400).json({message: error});
-
-    }
-});
-
-*/
-
-
-/*
-
-
-router.patch('/bookevent/:eventid/:numoftickets',async (req,res)=>{
-   
-    try{
-         const {eventid,numoftickets}=req.params;
-         
+       if(event.remaining_tickets<numoftickets){
+        return res.status(400).json({message:'Sorry! Not enough tickets!'});
+       }
       
-      const event=await Event.findOne({_id: eventid})
-       if(!event){
-        return res.status(400).json({message: error});
-       }
-       if(event.remaining_tickets<numoftickets){
-        return res.status(400).json({message:'Sorry! Not enough tickets!'});
-       }
-       if(event.remaining_tickets===0){
-        return res.status(400).json({message: 'Sold out!'});
-       }
        const temp= event.remaining_tickets-numoftickets;
-       event.remaining_tickets=temp;
-
-       const event2=await Event.findOneAndUpdate({_id: eventid},{remaining_tickets:temp},{new:true});
-
+          
+       const event2=await Event.findOneAndUpdate({_id:event_id},{remaining_tickets:temp},{new:true});
        res.send({message: 'You have made a successful booking!'});
        
     }catch(error){
@@ -142,7 +66,6 @@ router.patch('/bookevent/:eventid/:numoftickets',async (req,res)=>{
     }
 });
 
-*/
 
 
 export default router;

@@ -1,15 +1,20 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-//n
-//import cors from 'cors';//Allow request from any ip
+
+//
+import cors from 'cors';//Allow request from any ip
 
 const app= express();
-//n
-//app.use(cors());
 
+//
+app.use(cors());
+
+//
+//app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.json())    //ypoxrewtiko epeidh pairnoume parametrous
-app.use(express.urlencoded({extended:false}))
+app.use(express.json()) ;   //ypoxrewtiko epeidh pairnoume parametrous
+app.use(express.urlencoded({extended:true}));
+
 
 import dbConfig from './db.js'; //const dbConfig=require('./db')
 
